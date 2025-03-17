@@ -1,3 +1,7 @@
+[![GitHub release](https://img.shields.io/github/v/release/dumbestprogrammer/LazyDev-AI)](https://github.com/dumbestprogrammer/LazyDev-AI/releases)
+
+<br>
+
 ## License
 [![AGPL-3.0 License](https://img.shields.io/badge/License-AGPL%203.0-blue.svg)](https://www.gnu.org/licenses/agpl-3.0.html)
 
