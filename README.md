@@ -8,11 +8,15 @@ This project is licensed under the **GNU AGPL-3.0 License** © 2025-2027 Anukul 
 # 🧠 LazyDev AI - Automated Test Case Generator for Java Projects
 #### A next-gen CLI tool that analyzes Java source code, generates JUnit test cases using AI, and runs tests automatically — making test-driven development lazy but efficient.
 
+<br>
+
 ## 🚀 Overview
 - LazyDev AI is a *Spring Boot + AI-based*  **CLI tool** that automatically generates **JUnit 5 test classes** for your existing **Java** project. 
 - It scans your code, understands method logic, and writes meaningful unit tests, reducing manual effort.
 - It utilizes **Spoon** for *code parsing* and **OpenAI (GPT-4 Turbo)** for *writing test cases*. 
 - After generating, it can automatically run and validate those tests using Maven.
+
+<br>
 
 ## ✅ Why I Created This?
 Writing unit tests is time-consuming, repetitive, and often skipped in fast-paced development. LazyDev AI allows you to: <br>
@@ -23,11 +27,15 @@ Writing unit tests is time-consuming, repetitive, and often skipped in fast-pace
 - Work fully offline ( *no code upload, ensuring security* )
 - Think of LazyDev AI as your AI-powered testing assistant.
 
+<br>
+
 ## 🔹 Benefits?
 - Most devs hate writing unit tests – This saves time.
 - Helps juniors & lazy devs by generating test cases automatically.
 - AI-powered coverage analysis ensures important cases aren’t missed.
 - Improves code quality without effort.
+
+<br>
 
 
 ## ✨ Features
@@ -44,11 +52,14 @@ Writing unit tests is time-consuming, repetitive, and often skipped in fast-pace
 - Whitespace normalization and line break adjustments.
 - Automatic test class wrapping with essential imports and proper structure.
 
+<br>
 
 ## 📦 Prerequisites
 - Java 17+
 - Maven 3.8+
 - OpenAI API Key (Required to generate tests)
+
+<br>
 
 
 ## ⚙️ Tech Stack
@@ -64,6 +75,7 @@ Writing unit tests is time-consuming, repetitive, and often skipped in fast-pace
 | Maven              | Build & dependency management           |
 | SLF4J + Logback    | Logging and tracing                     |
 
+<br>
 
 
 ## 📚 Dependencies (from pom.xml)
@@ -74,6 +86,8 @@ Writing unit tests is time-consuming, repetitive, and often skipped in fast-pace
 - mockito-core
 - slf4j + logback
 - spring-boot-starter-test
+
+<br>
 
 
 ## 📂 Folder Structure
@@ -106,6 +120,8 @@ Writing unit tests is time-consuming, repetitive, and often skipped in fast-pace
 
 ```
 
+<br>
+
 
 ## 🔎 Class Breakdown
 | Class              | Role and Responsibility                               |
@@ -119,123 +135,175 @@ Writing unit tests is time-consuming, repetitive, and often skipped in fast-pace
 | Config             | Loads application properties and paths                |
 | MethodMetaData     | DTO for method-level metadata                         |
 
+<br>
+
 
 ## 🚀 API Endpoints (Public Methods)
 
 ### 1. ai.AIService
 - Handles interaction with OpenAI API for generating test cases.
 
-#### Method Signature
-`public String generateTestCases(String methodSignature)`
+<br>
+
+#### > Method Signature
+- `public String generateTestCases(String methodSignature)`
 
 <br>
 
-#### Description:
+#### > Description:
 - Takes a Java method signature or block and sends it to OpenAI to generate JUnit test cases. Returns raw AI output as a String.
 
-#### Example Usage
-`String aiGeneratedTest = aiService.generateTestCases("public int add(int a, int b)");`
+<br>
+
+#### > Example Usage
+- `String aiGeneratedTest = aiService.generateTestCases("public int add(int a, int b)");`
+
+
+<br>
+
+---
+
 
 
 
 ### 2. codeAnalyzer.CodeAnalyzer
 - Scans Java files to extract methods that require tests.
 
-#### Method Signature
-`public List<MethodMetaData> analyzeSourceCode(String sourceCode)`
+<br>
+
+#### > Method Signature
+- `public List<MethodMetaData> analyzeSourceCode(String sourceCode)`
+
 <br>
 
 
-#### Description:
+#### > Description:
 - Accepts Java source code as String, analyzes it using Spoon, and returns a list of MethodMetaData objects representing each method found.
 
-#### Example Usage
-`List<MethodMetaData> methods = codeAnalyzer.analyzeSourceCode(javaFileContent);`
+<br>
 
+#### > Example Usage
+- `List<MethodMetaData> methods = codeAnalyzer.analyzeSourceCode(javaFileContent);`
+
+<br>
+
+---
 
 
 ### 3. testGenerator.TestGenerator
 - Generates properly formatted JUnit test class files from AI outputs.
 
-#### Method Signature
-`public void generateTestFile(String packageName, String className, String testMethodsContent)`
+<br>
+
+#### > Method Signature
+- `public void generateTestFile(String packageName, String className, String testMethodsContent)`
+
 <br>
 
 
-#### Description:
+#### > Description:
 - Takes package name, class name, and AI-generated test methods, and writes them into a JUnit test file under correct package directory.
 
-#### Example Usage
-`testGenerator.generateTestFile("com.example.test", "UserServiceTest", aiGeneratedMethods);`
+<br>
 
+#### > Example Usage
+- `testGenerator.generateTestFile("com.example.test", "UserServiceTest", aiGeneratedMethods);`
+
+<br>
+
+---
 
 
 
 ### 4. testValidator.TestValidator
 - Runs generated test files using Maven and reports pass/fail results.
 
-#### Method Signature
-`public void runTests(String testFilePath)`
+<br>
+
+#### > Method Signature
+- `public void runTests(String testFilePath)`
+
 <br>
 
 
-#### Description:
+#### > Description:
 - Takes the file path of the generated JUnit test and runs mvn test on it. Captures and logs the result of test execution.
 
-#### Example Usage
-`testValidator.runTests("src/test/java/com/example/UserServiceTest.java");`
+<br>
 
+#### > Example Usage
+- `testValidator.runTests("src/test/java/com/example/UserServiceTest.java");`
+
+<br>
+
+---
 
 ### 5. utility.CodeSanitizer
 - Cleans AI-generated code from unwanted formatting and prepares it for file writing.
 
-#### Method Signatures
+<br>
 
-`public String cleanAICode(String aiGeneratedCode)`
-`public String wrapInTestClass(String packageName, String className, String methodsBlock)`
+#### > Method Signatures
+
+- `public String cleanAICode(String aiGeneratedCode)`
+- `public String wrapInTestClass(String packageName, String className, String methodsBlock)`
 
 <br>
 
 
-#### Descriptions:
+#### > Descriptions:
 
 - **cleanAICode:** Removes markdown syntax (like ```java) and stray backticks from AI output.
 - **wrapInTestClass:** Wraps cleaned test methods inside a valid Java class structure including necessary imports.
 
+<br>
 
-#### Example Usage
+#### > Example Usage
 
-`String cleanedCode = codeSanitizer.cleanAICode(rawAiCode);`
-`String testClass = codeSanitizer.wrapInTestClass("com.example", "MyServiceTest", cleanedCode);`
+- `String cleanedCode = codeSanitizer.cleanAICode(rawAiCode);`
+- `String testClass = codeSanitizer.wrapInTestClass("com.example", "MyServiceTest", cleanedCode);`
 
+
+<br>
+
+---
 
 
 ### 6. configuration.Config
 - Manages system configurations like file paths and API keys.
 
-#### Method Signatures
-`public String getOpenAiApiKey()`
-`public String getJavaSourceFolder()`
-`public String getTestOutputFolder()`
+<br>
+
+#### > Method Signatures
+- `public String getOpenAiApiKey()`
+- `public String getJavaSourceFolder()`
+- `public String getTestOutputFolder()`
 
 <br>
 
 
-#### Descriptions:
+#### > Descriptions:
 
 - **getOpenAiApiKey:** Returns stored OpenAI API key.
 - **getJavaSourceFolder:** Returns path to Java source folder to be analyzed.
 - **getTestOutputFolder:** Returns path where generated test files should be stored.
 
+<br>
 
-#### Example Usage
+#### > Example Usage
 
-`String apiKey = config.getOpenAiApiKey();`
+- `String apiKey = config.getOpenAiApiKey();`
 
+<br>
+
+---
 
 
 ### 7. dto.MethodMetaData
 - Data Transfer Object that stores method information extracted from Java files.
+
+<br>
+
 
 | Method Signature                          | Description                                               |
 |-------------------------------------------|-----------------------------------------------------------|
@@ -245,46 +313,61 @@ Writing unit tests is time-consuming, repetitive, and often skipped in fast-pace
 
 <br>
 
+<br>
+
+---
+
 
 ### 8. LazyDevApplication
 - Main CLI runner that orchestrates the complete workflow: analyze, generate, sanitize, create test class, validate.
+
+<br>
 
 
 | Method Signature                            | Description                                                                                                                                   |
 |---------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------|
 | `public static void main(String[] args)`    | Entry point of the application. Processes user input via command-line, runs AI service, and triggers test generation and validation pipeline. |
 
-
-
-#### Example Run:
-`java -jar lazydev.jar /path/to/source/file.java`
-
 <br>
 
 
+#### > Example Run:
+- `java -jar lazydev.jar /path/to/source/file.java`
+
+<br>
+<br>
+<br>
+
+<hr>
 
 ## 🔗 How It Works and How Classes Interact (Workflow)
 
 
 #### 1. Analyze Java Classes:
-Scans all .java files in /src/main/java, extracts method signatures, parameters, and exceptions.
+- Scans all .java files in /src/main/java, extracts method signatures, parameters, and exceptions.
+
+<br>
 
 #### 2. Generate JUnit Test Cases (with AI):
 
-Sends method data to GPT-4 Turbo.
-Receives fully functional JUnit test methods, using Mockito if needed.
+- Sends method data to GPT-4 Turbo.
+- Receives fully functional JUnit test methods, using Mockito if needed.
+
+<br>
 
 
 #### 3. Sanitize AI Responses:
-Cleans markdown, backticks, formatting issues before saving as .java files.
+- Cleans markdown, backticks, formatting issues before saving as .java files.
 
+<br>
 
 #### 4. Save and Organize Test Classes:
-Puts them under appropriate package in /src/test/java.
+- Puts them under appropriate package in /src/test/java.
 
+<br>
 
 #### 5. Run Tests Automatically:
-Runs mvn test and displays success/failure.
+- Runs mvn test and displays success/failure.
 
 
 
@@ -355,17 +438,45 @@ https://github.com/user-attachments/assets/fd7e5d11-12ef-4c7c-8a41-9a5f07173a5a
 
 #### Backend Logs , Test/Target folders and @Test cases :
 
-![Screenshot 2025-03-17 104004](https://github.com/user-attachments/assets/b3402739-51ea-414c-a2e6-b5f0dde4b0fa)
-![Screenshot 2025-03-17 102333](https://github.com/user-attachments/assets/7020754a-f758-48ce-ae89-c62ad96a68ce)
-![Screenshot 2025-03-17 102324](https://github.com/user-attachments/assets/6d4070d6-3720-4db6-b7e2-66f00f07a58a)
-![Screenshot 2025-03-17 102254](https://github.com/user-attachments/assets/ef07e6a2-1551-4f01-80c2-0bc6e91d871f)
-![Screenshot 2025-03-17 102218](https://github.com/user-attachments/assets/ec0afafa-96e3-48dd-96a8-c59b7c9e2f38)
-![Screenshot 2025-03-17 102111](https://github.com/user-attachments/assets/b9356c3b-31f0-4be9-8367-b29448224690)
+- Application Up and Running after the command -> `java -jar target/product-0.0.1-SNAPSHOT.jar generate-tests C:/Users/anuku/Desktop/Dummies/src/main/java`
 ![Screenshot 2025-03-17 102027](https://github.com/user-attachments/assets/9282574a-ca68-40b8-84bd-4c4444fea19e)
+
+<br>
+
+- Did the analysis and got the classes that are in the Java-SpringBoot project
+![Screenshot 2025-03-17 102111](https://github.com/user-attachments/assets/b9356c3b-31f0-4be9-8367-b29448224690)
+
+<br>
+
+
+- Sends the code to AI for generating the Test cases ( *Proper logging so you can clearly see what is happening behind the scenes* )
+![Screenshot 2025-03-17 102218](https://github.com/user-attachments/assets/ec0afafa-96e3-48dd-96a8-c59b7c9e2f38)
+
+<br>
+
+- Application Shutdown 
+![Screenshot 2025-03-17 102254](https://github.com/user-attachments/assets/ef07e6a2-1551-4f01-80c2-0bc6e91d871f)
+
+<br>
+
+
+
+- Now you can see the Test and Target folders ( *Weren't in the project earlier* )
+![Screenshot 2025-03-17 104004](https://github.com/user-attachments/assets/94193e1b-3a90-46f8-a87f-2cfb695f596f)
+
+<br>
+
+
+- **Sample Test Codes**
+![Screenshot 2025-03-17 102324](https://github.com/user-attachments/assets/6d4070d6-3720-4db6-b7e2-66f00f07a58a)
+
+![Screenshot 2025-03-17 102333](https://github.com/user-attachments/assets/7020754a-f758-48ce-ae89-c62ad96a68ce)
 
 
 
 <br>
+
+<hr>
 
 
 ## ⚠️ Known Limitations (as of now)
@@ -374,6 +485,8 @@ https://github.com/user-attachments/assets/fd7e5d11-12ef-4c7c-8a41-9a5f07173a5a
 - Generated tests may need manual tweaks.
 - Only for Java.
 
+
+<br>
 
 ## 🚧 Future Improvements
 - Support for private method testing.
@@ -384,6 +497,7 @@ https://github.com/user-attachments/assets/fd7e5d11-12ef-4c7c-8a41-9a5f07173a5a
 - Summary report after test generation and validation, showing counts and results.
 - Support to more languages.
 
+<br>
 
 
 ## 📢 Contact
