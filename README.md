@@ -1,27 +1,19 @@
-[![GitHub release](https://img.shields.io/github/v/release/dumbestprogrammer/LazyDev-AI)](https://github.com/dumbestprogrammer/LazyDev-AI/releases)
-
+[![GitHub release](https://img.shields.io/github/v/release/dumbestprogrammer/LazyDev-AI)](https://github.com/dumbestprogrammer/LazyDev-AI/releases) [![AGPL-3.0 License](https://img.shields.io/badge/License-AGPL%203.0-blue.svg)](https://www.gnu.org/licenses/agpl-3.0.html)
 <br>
-
-## License
-[![AGPL-3.0 License](https://img.shields.io/badge/License-AGPL%203.0-blue.svg)](https://www.gnu.org/licenses/agpl-3.0.html)
 
 This project is licensed under the **GNU AGPL-3.0 License** © 2025-2027 Anukul Kumar. See [LICENSE](./LICENSE) for more information.
 
 <hr>
+<br>
 
-# 🧠 LazyDev AI - Automated Test Case Generator for Java Projects
+
+# 🧠LazyDev AI - Automated Test Case Generator for Java Projects
 #### A next-gen CLI tool that analyzes Java source code, generates JUnit test cases using AI, and runs tests automatically — making test-driven development lazy but efficient.
+LazyDev AI is a Spring Boot-based CLI tool that leverages AI (OpenAI's GPT-4 Turbo) to automatically generate JUnit 5 test classes for Java projects. It analyzes your code, creates meaningful unit tests, and validates them using Maven, streamlining the testing process.
 
 <br>
 
-## 🚀 Overview
-- LazyDev AI is a *Spring Boot + AI-based*  **CLI tool** that automatically generates **JUnit 5 test classes** for your existing **Java** project. 
-- It scans your code, understands method logic, and writes meaningful unit tests, reducing manual effort.
-- It utilizes **Spoon** for *code parsing* and **OpenAI (GPT-4 Turbo)** for *writing test cases*. 
-- After generating, it can automatically run and validate those tests using Maven.
-
-<br>
-
+<!--
 ## ✅ Why I Created This?
 Writing unit tests is time-consuming, repetitive, and often skipped in fast-paced development. LazyDev AI allows you to: <br>
 
@@ -40,21 +32,19 @@ Writing unit tests is time-consuming, repetitive, and often skipped in fast-pace
 - Improves code quality without effort.
 
 <br>
+-->
 
-
-## ✨ Features
-- AI-Powered **JUnit 5 Test** Generation.
-- Analyzes method signatures, parameters, exceptions.
-- **Command-line based** — no need to integrate in IDE.
-- Auto-organizes generated test files in **/src/test/java**.
-- Supports **Mockito mocking** where required.
-- Runs mvn test automatically to validate generated tests.
-- Fully customizable via **application.properties** or **CLI**.
-- Detailed logs for easy debugging and traceability.
-- Automatic cleanup of AI-generated Java code.
+## ✅Key Features
+- Automatically generates comprehensive **JUnit 5** tests using AI
+- Analyzes Java methods for signatures, parameters, and exceptions
+- **Command-line** interface for easy integration into workflows
+- Organizes generated tests in /src/test/java
+- Supports Mockito for mocking dependencies
+- Runs Maven tests automatically to validate results
+- Provides detailed logs for debugging
+- Cleans AI-generated code for compatibility and readability
 - Markdown artifacts removal: ` ```java ` blocks, stray backticks, and more.
 - Whitespace normalization and line break adjustments.
-- Automatic test class wrapping with essential imports and proper structure.
 
 <br>
 
@@ -65,7 +55,7 @@ Writing unit tests is time-consuming, repetitive, and often skipped in fast-pace
 
 <br>
 
-
+<!--
 ## ⚙️ Tech Stack
 
 | Technology         | Purpose                                 |
@@ -80,8 +70,10 @@ Writing unit tests is time-consuming, repetitive, and often skipped in fast-pace
 | SLF4J + Logback    | Logging and tracing                     |
 
 <br>
+-->
 
 
+<!--
 ## 📚 Dependencies (from pom.xml)
 - spring-boot-starter-web
 - spring-ai-openai-spring-boot-starter
@@ -411,7 +403,15 @@ Writing unit tests is time-consuming, repetitive, and often skipped in fast-pace
 └──────────────────┘
 
 ```
+-->
+## Quick Start
+- Clone the repository: `git clone https://github.com/dumbestprogrammer/LazyDev-AI.git`
+- Navigate to the project directory: `cd LazyDev-AI`
+- Build the project: `mvn clean package`
+- Set your OpenAI API key in application.properties (look for openai.api.key).
+- Run the tool: `java -jar target/lazydev-ai-0.0.1-SNAPSHOT.jar generate-tests <path_to_source_folder>`
 
+<br>
 
 ## 💻 CLI Commands Available
 
@@ -424,8 +424,30 @@ Writing unit tests is time-consuming, repetitive, and often skipped in fast-pace
 #### Example Command:
 `java -jar lazydev.jar generate-tests C:/Users/user/MyProject/src/main/java`
 
+<br>
 
+## How It Works
+- **Analyze Java Classes:** Scans .java files to extract method metadata.
+- **Generate Tests:** Uses GPT-4 Turbo to create JUnit test methods.
+- **Sanitize Output:** Cleans AI-generated code for formatting issues.
+- **Save Tests:** Organizes tests in /src/test/java with proper structure.
+- **Run Tests:** Executes mvn test and displays results.
 
+<br>
+
+```
+Java Source Code
+       ↓
+  CodeAnalyzer   →  AIService   →  CodeSanitizer
+       ↓               ↓               ↓
+  TestGenerator   ←  Cleaned Tests   ←
+       ↓
+  TestValidator → mvn test
+ ```
+
+<br>
+
+<br>
 
 ## 🎥 Demo
 
@@ -472,9 +494,10 @@ https://github.com/user-attachments/assets/fd7e5d11-12ef-4c7c-8a41-9a5f07173a5a
 
 
 - **Sample Test Codes**
-![Screenshot 2025-03-17 102324](https://github.com/user-attachments/assets/6d4070d6-3720-4db6-b7e2-66f00f07a58a)
 
-![Screenshot 2025-03-17 102333](https://github.com/user-attachments/assets/7020754a-f758-48ce-ae89-c62ad96a68ce)
+- ![Screenshot 2025-03-17 102324](https://github.com/user-attachments/assets/6d4070d6-3720-4db6-b7e2-66f00f07a58a)
+
+- ![Screenshot 2025-03-17 102333](https://github.com/user-attachments/assets/7020754a-f758-48ce-ae89-c62ad96a68ce)
 
 
 
@@ -483,15 +506,8 @@ https://github.com/user-attachments/assets/fd7e5d11-12ef-4c7c-8a41-9a5f07173a5a
 <hr>
 
 
-## ⚠️ Known Limitations (as of now)
-- AI might miss edge cases in complex methods.
-- Relies on OpenAI — requires internet.
-- Generated tests may need manual tweaks.
-- Only for Java.
 
-
-<br>
-
+<!--
 ## 🚧 Future Improvements
 - Support for private method testing.
 - Add CLI flags for API keys, models, and temperature instead of only application.properties.
@@ -503,6 +519,15 @@ https://github.com/user-attachments/assets/fd7e5d11-12ef-4c7c-8a41-9a5f07173a5a
 
 <br>
 
+## ⚠️ Known Limitations (as of now)
+- AI might miss edge cases in complex methods.
+- Relies on OpenAI — requires internet.
+- Generated tests may need manual tweaks.
+- Only for Java.
+
+
+<br>
+-->
 
 ## 📢 Contact
 For any questions, feedback, or contributions, feel free to reach out: <br>
